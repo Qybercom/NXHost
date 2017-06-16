@@ -1,0 +1,45 @@
+# This file contains templates for web panels of common tools
+# Select which you need
+# 
+# You can enable HTTPS for each of them by including this:
+# 
+# # select HTTP protocol
+# include nxhost/http;
+# 
+# # or uncomment for enabling HTTPS
+# #ssl_certificate /etc/ssl/certs/project.[name].cert;
+# #ssl_certificate_key /etc/ssl/private/project.[name].key;
+# #include nxhost/https;
+# #include nxhost/plugins/redirect_https;
+
+server {
+	# replace [pma] with your pma host
+	server_name [pma];
+	
+	include nxhost/http;
+	include nxhost/hosts/service_pma;
+}
+
+server {
+	# replace [genghis] with your genghis host
+	server_name [genghis];
+	
+	include nxhost/http;
+	include nxhost/hosts/service_genghis;
+}
+
+server {
+	# replace [scout] with your scout host
+	server_name [scout];
+	
+	include nxhost/http;
+	include nxhost/hosts/service_scout;
+}
+
+server {
+	# replace [lwp] with your lwp host
+	server_name [lwp];
+	
+	include nxhost/http;
+	include nxhost/hosts/service_lwp;
+}

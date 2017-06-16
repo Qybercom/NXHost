@@ -1,0 +1,4 @@
+# http://linuxguru.ru/administration/pravelnyj-redirekt-s-http-na-https-pri-pomoshhi-nginx/
+if ( $scheme = "http" ) {
+	rewrite ^/(.*)$ https://$host/$1 permanent;
+}

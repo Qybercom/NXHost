@@ -1,0 +1,27 @@
+include nxhost/plugins/static;
+
+location /protected/ {
+	include nxhost/plugins/deny_access;
+}
+
+location ~ \.php {
+	fastcgi_pass unix:/var/run/php/php5.6-fpm.sock;
+	
+	fastcgi_index index.php;
+	
+	fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+	fastcgi_param DOCUMENT_ROOT $document_root;
+	fastcgi_param QUERY_STRING $uri;
+	fastcgi_param PATH_INFO $fastcgi_script_name;
+	
+	fastcgi_read_timeout 10m;
+	
+	include fastcgi_params;
+	
+	# Uncomment to enable naxsi on this location
+	# include /etc/nginx/naxsi.rules
+}
+
+location ~ / {
+	rewrite (.*) /index.php last;
+}

@@ -1,0 +1,1 @@
+location ~* \.(jpg|jpeg|gif|png|ico|css|bmp|swf|js|html|txt|pdf|ttf|otf|woff|svg)$ {}

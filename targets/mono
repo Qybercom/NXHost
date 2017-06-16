@@ -1,0 +1,8 @@
+include nxhost/plugins/setup;
+include nxhost/plugins/acme;
+include nxhost/plugins/deny_static;
+include nxhost/plugins/mono;
+
+location ~ ^(.*)\.(xml|cs|p12|suo|sln|asax|config|gitignore|json|user|userprefs|pdb|dll|exe|mdb|cache|nupkg|nuspec|rtf|cshtml)$ {
+	deny all;
+}

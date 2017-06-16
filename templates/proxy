@@ -1,0 +1,26 @@
+upstream your_upstream {
+	server http://ip-or-domain[:port];
+}
+
+server {
+	# $upstream can be either nginx upstream or direct address
+	set $upstream your_upstream;
+	
+	# replace [domain] with your domain
+	server_name [domain];
+	
+	access_log /var/log/nginx/proxy/[name].access.log;
+	error_log /var/log/nginx/proxy/[name].error.log;
+	
+	include nxhost/http;
+	include nxhost/targets/proxy;
+	
+	# select HTTP protocol
+	include nxhost/http;
+	
+	# or uncomment for enabling HTTPS
+	#ssl_certificate /etc/ssl/certs/project.[name].cert;
+	#ssl_certificate_key /etc/ssl/private/project.[name].key;
+	#include nxhost/https;
+	#include nxhost/plugins/redirect_https;
+}

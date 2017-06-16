@@ -1,0 +1,1 @@
+location ~ ^(.*)\.(htaccess|git|DS_store|pem)[a-zA-Z0-9_\-]*$ { deny all; }

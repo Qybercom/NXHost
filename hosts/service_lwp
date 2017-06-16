@@ -1,0 +1,9 @@
+set $upstream http://127.0.0.1:5000;
+
+access_log /var/log/nginx/services/lwp.access.log;
+error_log /var/log/nginx/services/lwp.error.log;
+
+include allow*;
+
+include nxhost/plugins/deny_access;
+include nxhost/targets/proxy;

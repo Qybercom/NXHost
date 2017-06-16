@@ -1,0 +1,9 @@
+set $upstream http://127.0.0.1:5678;
+
+access_log /var/log/nginx/services/genghis.access.log;
+error_log /var/log/nginx/services/genghis.error.log;
+
+include allow*;
+
+include nxhost/plugins/deny_access;
+include nxhost/targets/proxy;

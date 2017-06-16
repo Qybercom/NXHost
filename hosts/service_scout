@@ -1,0 +1,9 @@
+set $upstream http://127.0.0.1:5555;
+
+access_log /var/log/nginx/services/scout.access.log;
+error_log /var/log/nginx/services/scout.error.log;
+
+include allow*;
+
+include nxhost/plugins/deny_access;
+include nxhost/targets/proxy;

@@ -1,0 +1,2 @@
+include nxhost/plugins/setup;
+include nxhost/plugins/redirect;

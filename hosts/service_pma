@@ -1,0 +1,9 @@
+root /usr/share/phpmyadmin/;
+
+access_log /var/log/nginx/services/pma.access.log;
+error_log /var/log/nginx/services/pma.error.log;
+
+include allow*;
+
+include nxhost/plugins/deny_access;
+include nxhost/targets/php;
