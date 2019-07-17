@@ -4,8 +4,8 @@ server {
 	
 	root /usr/share/nginx/[name]/;
 	
-	access_log /var/log/nginx/projects/[name].access.log;
-	error_log /var/log/nginx/projects/[name].error.log;
+	access_log /var/log/nginx/[name]/access.log;
+	error_log /var/log/nginx/[name]/error.log;
 	
 	# select type of project (php, mono or quark)
 	include nxhost/targets/[type];
@@ -14,8 +14,8 @@ server {
 	include nxhost/http;
 	
 	# or uncomment for enabling HTTPS
-	#ssl_certificate /etc/ssl/certs/project.[name].cert;
-	#ssl_certificate_key /etc/ssl/private/project.[name].key;
+	#ssl_certificate /etc/ssl/certs/[name].cert;
+	#ssl_certificate_key /etc/ssl/private/[name].key;
 	#include nxhost/https;
 	#include nxhost/plugins/redirect_https;
 }

@@ -1,5 +1,5 @@
 location ~ / {
-	proxy_pass $upstream;
+	proxy_pass $proxy_upstream;
 	proxy_redirect off;
 	
 	proxy_set_header Host $host;

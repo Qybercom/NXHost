@@ -1,8 +1,29 @@
 include nxhost/plugins/static;
 
-location / {
-	fastcgi_index /;
-	fastcgi_pass 127.0.0.1:9000;
-	
-	include fastcgi_params;
+index index.html index.htm index.aspx default.aspx;
+
+# Useful links
+# https://www.nginx.com/resources/wiki/start/topics/examples/mono/
+# https://www.mono-project.com/docs/web/fastcgi/
+# https://stackoverflow.com/a/7316833/2097055
+# https://stackoverflow.com/a/39819573/2097055
+
+if ($mono_handler_version ~ "^$") {
+	set $mono_handler_version 4;
+}
+
+if ($mono_handler ~ "^$") {
+	set $mono_handler unix:/var/run/mono/fastcgi-mono-server$mono_handler_version.sock;
+}
+
+if ($fastcgi_index ~ "^$") {
+	set $fastcgi_index default.aspx;
+}
+
+if ($fastcgi_handler ~ "^$") {
+	set $fastcgi_handler $mono_handler;
+}
+
+location ~ \.aspx {
+	include nxhost/plugins/fastcgi;
 }

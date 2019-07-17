@@ -20,7 +20,7 @@ You can use this tool in 2 ways:
  1. `template` - template used for virtual host. Can be:
     - `project` - virtual host is used for web access to a project (`php`, `mono` or `quark`)
     - `proxy` - virtual host is used as frontend-balancer/reverse proxy for some backend
-    - `servies` - virtual host for serving web management of common used tools such `phpMyAdmin`, `GenghisApp`, `ScoutRealtime` and `LXC Web Panel`. You can disable unnecessary in generated virtual host configuration.
+    - `services` - virtual host for serving web management of common used tools such `phpMyAdmin`, `GenghisApp`, `ScoutRealtime` and `LXC Web Panel`. You can disable unnecessary in generated virtual host configuration.
  2. `name` - virtual host' file name
  3. `type` - the type of virtual host. Used only when `template` is `project`. Can be:
     - `php` - generic php project *(at the moment supports only `php-fpm`)*

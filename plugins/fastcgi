@@ -1,0 +1,9 @@
+fastcgi_pass $fastcgi_handler;
+fastcgi_index $fastcgi_index;
+
+# http://nginx.org/ru/docs/stream/ngx_stream_ssl_module.html
+# https://serverfault.com/a/868629
+fastcgi_param SSL_CLIENT_CERT $ssl_client_raw_cert;
+fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+
+include fastcgi_params;

@@ -1,27 +1,23 @@
 include nxhost/plugins/static;
 
-location /protected/ {
-	include nxhost/plugins/deny_access;
+index index.html index.php;
+
+if ($php_handler_version ~ "^$") {
+	set $php_handler_version 7.2;
+}
+
+if ($php_handler ~ "^$") {
+	set $php_handler unix:/var/run/php/php$php_handler_version-fpm.sock;
+}
+
+if ($fastcgi_index ~ "^$") {
+	set $fastcgi_index index.php;
+}
+
+if ($fastcgi_handler ~ "^$") {
+	set $fastcgi_handler $php_handler;
 }
 
 location ~ \.php {
-	fastcgi_pass unix:/var/run/php/php5.6-fpm.sock;
-	
-	fastcgi_index index.php;
-	
-	fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
-	fastcgi_param DOCUMENT_ROOT $document_root;
-	fastcgi_param QUERY_STRING $uri;
-	fastcgi_param PATH_INFO $fastcgi_script_name;
-	
-	fastcgi_read_timeout 10m;
-	
-	include fastcgi_params;
-	
-	# Uncomment to enable naxsi on this location
-	# include /etc/nginx/naxsi.rules
-}
-
-location ~ / {
-	rewrite (.*) /index.php last;
+	include nxhost/plugins/fastcgi;
 }
