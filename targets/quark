@@ -1,12 +1,13 @@
 include nxhost/plugins/setup;
 include nxhost/plugins/acme;
-include nxhost/plugins/phpfpm;
 
-location ~ / {
+location / {
 	rewrite (.*) /index.php last;
 }
 
 location /runtime { deny all; }
-location ~ ^(.*)\.(php|ini|qd|log|htaccess|git|idea|pem)[a-zA-Z0-9_\-]*$ { deny all; }
+location ^(.*)\.(php|ini|qd|log|htaccess|git|idea|pem)[a-zA-Z0-9_\-]*$ { deny all; }
 
-location ~ /index.php { allow all; }
+location /index.php { allow all; }
+
+include nxhost/plugins/phpfpm;
