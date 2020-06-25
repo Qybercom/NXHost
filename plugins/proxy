@@ -1,13 +1,35 @@
+if ($proxy_host ~ "^$") {
+	set $proxy_host $host;
+}
+
+if ($proxy_remote_addr ~ "^$") {
+	set $proxy_remote_addr $remote_addr;
+}
+
+if ($proxy_scheme ~ "^$") {
+	set $proxy_scheme $scheme;
+}
+
+if ($proxy_header_authorization ~ "^$") {
+	set $proxy_header_authorization $http_authorization;
+}
+
 location ~ / {
 	proxy_pass $proxy_upstream;
 	proxy_redirect off;
 	
-	proxy_set_header Host $host;
-	proxy_set_header X-Real-IP $remote_addr;
-	proxy_set_header X-Forwarded-For $remote_addr;
-	proxy_set_header X-Forwarded-Proto $scheme;
+	proxy_set_header Host $proxy_host;
+	proxy_set_header Authorization $proxy_header_authorization;
+	
+	proxy_set_header Upgrade $http_upgrade;
+	proxy_set_header Connection $connection_upgrade;
+	
+	proxy_set_header X-Real-IP $proxy_remote_addr;
+	proxy_set_header X-Forwarded-For $proxy_remote_addr;
+	proxy_set_header X-Forwarded-Proto $proxy_scheme;
 	
 	proxy_connect_timeout 300;
 	proxy_send_timeout 300;
 	proxy_read_timeout 300;
+	proxy_buffering off;
 }

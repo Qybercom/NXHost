@@ -7,3 +7,6 @@ fastcgi_param SSL_CLIENT_CERT $ssl_client_raw_cert;
 fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
 
 include fastcgi_params;
+
+# https://github.com/Microsoft/WSL/issues/2100#issuecomment-301314457
+fastcgi_buffering off;

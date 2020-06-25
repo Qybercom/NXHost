@@ -1,13 +1,14 @@
 # https://habrahabr.ru/post/252821/
 
 listen 443;
+listen [::]:443;
 
 ssl on;
 
 # DH 4096 use
 # openssl dhparam -out dhparam.pem [bits]
 # to generate expected DHParam
-ssl_dhparam dhparam.pem;
+#ssl_dhparam dhparam.pem;
 
 # enables all versions of TLS, but not SSLv2 or 3 which are weak and now deprecated.
 ssl_protocols TLSv1 TLSv1.1 TLSv1.2;

@@ -7,6 +7,6 @@ location ~ / {
 }
 
 location /runtime { deny all; }
-location ~ ^(.*)\.(php|ini|qd|log|htaccess|git|idea|pem)[a-zA-Z0-9_\-]*$ { deny all; }
+location ~ ^(.*)\.(php|ini|qd|log|htaccess|git|idea|pem|devops)[a-zA-Z0-9_\-]*$ { deny all; }
 
 location ~ /index.php { allow all; }

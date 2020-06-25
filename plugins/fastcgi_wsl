@@ -1,2 +1,0 @@
-# https://github.com/Microsoft/WSL/issues/2100#issuecomment-301314457
-fastcgi_buffering off;
