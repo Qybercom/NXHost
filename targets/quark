@@ -1,13 +1,15 @@
 include nxhost/plugins/setup;
 include nxhost/plugins/acme;
 
-location / {
-	rewrite (.*) /index.php last;
-}
+location ^(.*)\.(php|ini|qd|log|htaccess|git|gitignore|idea|pem|devops)[a-zA-Z0-9_\-]*$ { deny all; }
+
+location Dockerfile { deny all; }
 
 location /runtime { deny all; }
 
-location ~ ^(.*)\.(php|ini|qd|log|htaccess|git|idea|pem|devops)[a-zA-Z0-9_\-]*$ { deny all; }
+location / {
+	rewrite (.*) /index.php last;
+}
 
 location /index.php { allow all; }
 
