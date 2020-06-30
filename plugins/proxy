@@ -1,8 +1,3 @@
-map $http_upgrade $connection_upgrade {
-	default upgrade;
-	''      close;
-}
-
 if ($proxy_host ~ "^$") {
 	set $proxy_host $host;
 }
@@ -17,6 +12,10 @@ if ($proxy_scheme ~ "^$") {
 
 if ($proxy_header_authorization ~ "^$") {
 	set $proxy_header_authorization $http_authorization;
+}
+
+if ($connection_upgrade ~ "^$") {
+	set $connection_upgrade Keep-Alive;
 }
 
 location ~ / {
