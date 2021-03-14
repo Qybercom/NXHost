@@ -1,0 +1,52 @@
+# https://gist.github.com/vladkras/ad103a0f7116e86696b627508b408546
+# https://www.digitalocean.com/community/questions/conditional-within-an-if-in-nginx
+
+set $store_apple_ok '';
+if ($http_user_agent ~* 'iphone|ipod|ipad|appletv') {
+	set $store_apple_ok '${store_apple_ok}1';
+}
+if ($store_apple ~ "^.+$") {
+	set $store_apple_ok '${store_apple_ok}1';
+}
+if ($store_apple_ok ~* '11') {
+	return 301 https://apps.apple.com/ru/app/$store_apple;
+}
+
+
+set $store_google_ok '';
+if ($http_user_agent ~* 'android') {
+	set $store_google_ok '${store_google_ok}1';
+}
+if ($store_google ~ "^.+$") {
+	set $store_google_ok '${store_google_ok}1';
+}
+if ($store_google_ok ~* '11') {
+	return 301 https://play.google.com/store/apps/details?id=$store_google;
+}
+
+
+if ($http_user_agent ~* 'Windows') {
+	# need same for first 2
+	return 301 https://www.microsoft.com/store/apps?rtc=1;
+}
+
+
+if ($http_user_agent ~* 'Linux') {
+	# need same for first 2
+	return 301 https://www.linux.org/;
+}
+
+
+if ($http_user_agent ~* 'Mac') {
+	# need same for first 2
+	return 301 https://www.apple.com/mac/;
+}
+
+
+
+if ($store_unknown ~ "^$") {
+	set $store_unknown false;
+}
+if ($store_unknown ~ "^.+$") {
+	return 301 $store_unknown;
+}

@@ -6,4 +6,8 @@ fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
 include fastcgi_params;
 
 # https://github.com/Microsoft/WSL/issues/2100#issuecomment-301314457
-fastcgi_buffering off;
+#fastcgi_buffering off;
+
+# https://github.com/microsoft/WSL/issues/2100#issuecomment-627420199
+fastcgi_buffer_size 128k;
+fastcgi_buffers 4 256k;
