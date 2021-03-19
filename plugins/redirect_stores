@@ -9,7 +9,7 @@ if ($store_apple ~ "^.+$") {
 	set $store_apple_ok '${store_apple_ok}1';
 }
 if ($store_apple_ok ~* '11') {
-	return 301 https://apps.apple.com/ru/app/$store_apple;
+	return 301 https://apps.apple.com/app/$store_apple;
 }
 
 
