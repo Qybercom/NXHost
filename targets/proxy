@@ -1,2 +1,3 @@
 include nxhost/plugins/setup;
+include nxhost/plugins/acme;
 include nxhost/plugins/proxy;

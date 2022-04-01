@@ -1,1 +1,1 @@
-rewrite ^/(.*)$ http://$redirect/$1 permanent;
+rewrite ^/(.*)$ $redirect/$1 permanent;

@@ -1,0 +1,3 @@
+include nxhost/plugins/cors_headers;
+
+add_header 'Access-Control-Expose-Headers' 'Content-Length,Content-Range,Set-Cookie' always;

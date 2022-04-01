@@ -1,0 +1,51 @@
+# https://enable-cors.org/server_nginx.html
+# https://ezecodes.wordpress.com/2016/06/30/multiple-if-conditions-in-nginx/
+
+if ($cors_origin ~ "^$") {
+	set $cors_origin $scheme://$host;
+}
+
+set $cors_methods_default 'GET, POST, OPTIONS';
+if ($cors_methods_final ~ "^$") {
+	set $cors_methods_final '$cors_methods_default,$cors_methods';
+}
+if ($cors_methods ~ "^$") {
+	set $cors_methods_final $cors_methods_default;
+}
+
+set $cors_headers_default 'DNT,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Range';
+if ($cors_headers_final ~ "^$") {
+	set $cors_headers_final '$cors_headers_default,$cors_headers';
+}
+if ($cors_headers ~ "^$") {
+	set $cors_headers_final $cors_headers_default;
+}
+
+set $cors_method_options $cors_enabled;
+if ($request_method = 'OPTIONS') {
+	set $cors_method_options "${cors_enabled}TRUE";
+}
+if ($cors_method_options = 'TRUETRUE') {
+	include nxhost/plugins/cors_headers;
+	
+	add_header 'Content-Type' 'text/plain; charset=utf-8';
+	add_header 'Content-Length' 0;
+	
+	return 204;
+}
+
+set $cors_method_get $cors_enabled;
+if ($request_method = 'GET') {
+	set $cors_method_post "${cors_enabled}TRUE";
+}
+if ($cors_method_get = 'TRUETRUE') {
+	include nxhost/plugins/cors_headers_final;
+}
+
+set $cors_method_post $cors_enabled;
+if ($request_method = 'POST') {
+	set $cors_method_post "${cors_enabled}TRUE";
+}
+if ($cors_method_post = 'TRUETRUE') {
+	include nxhost/plugins/cors_headers_final;
+}

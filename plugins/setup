@@ -3,5 +3,8 @@
 
 set $fascgi_handler 127.0.0.1:9000;
 
+set $cors_methods '';
+set $cors_headers '';
+
 charset utf-8;
 server_tokens off;

@@ -1,4 +1,15 @@
 include nxhost/plugins/setup;
 include nxhost/plugins/acme;
 include nxhost/plugins/deny_static;
+
+location ~ ^(.*)\.(log|htaccess|git|gitignore|idea|pem)[a-zA-Z0-9_\-]*$ { deny all; }
+
+location Dockerfile { deny all; }
+
+location / {
+	rewrite (.*) /index.php last;
+}
+
+location /index.php { allow all; }
+
 include nxhost/plugins/phpfpm;

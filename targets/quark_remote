@@ -1,0 +1,26 @@
+if ($quark_nginx ~ "^$") {
+	set $quark_nginx http://127.0.0.1:80;
+}
+
+if ($quark_fastcgi ~ "^$") {
+	set $quark_fastcgi 127.0.0.1:9000;
+}
+
+if ($quark_host ~ "^$") {
+	set $quark_host $host;
+}
+
+location ~ (/cdn|/Views) {
+	proxy_pass $quark_nginx;
+	proxy_redirect off;
+
+	proxy_set_header Host $quark_host;
+
+	proxy_connect_timeout 600;
+	proxy_send_timeout 600;
+	proxy_read_timeout 600;
+	proxy_buffering off;
+}
+
+set $fastcgi_handler $quark_fastcgi;
+include nxhost/targets/quark;

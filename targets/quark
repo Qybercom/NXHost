@@ -1,16 +1,6 @@
-include nxhost/plugins/setup;
-include nxhost/plugins/acme;
-
-location ^(.*)\.(php|ini|qd|log|htaccess|git|gitignore|idea|pem|devops)[a-zA-Z0-9_\-]*$ { deny all; }
-
-location Dockerfile { deny all; }
+# https://stackoverflow.com/a/2404330/2097055
+location ~ ^((?!.*index).*\.(php|ini|qd|devops)) { deny all; }
 
 location /runtime { deny all; }
 
-location / {
-	rewrite (.*) /index.php last;
-}
-
-location /index.php { allow all; }
-
-include nxhost/plugins/phpfpm;
+include nxhost/targets/php;

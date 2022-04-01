@@ -1,4 +1,4 @@
 include nxhost/plugins/setup;
 include nxhost/plugins/acme;
 include nxhost/plugins/deny_static;
-include nxhost/plugins/static;
+include nxhost/plugins/phpfpm;

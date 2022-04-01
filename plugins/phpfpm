@@ -23,6 +23,8 @@ if ($fastcgi_handler ~ "^$") {
 include nxhost/plugins/fastcgi;
 
 location ~ \.php {
+	include nxhost/plugins/cors;
+	
 	fastcgi_index $fastcgi_index;
 	fastcgi_pass $fastcgi_handler;
 }

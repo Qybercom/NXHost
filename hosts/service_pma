@@ -6,4 +6,4 @@ root /usr/share/phpmyadmin/;
 include allow*;
 
 include nxhost/plugins/deny_access;
-include nxhost/targets/php;
+include nxhost/targets/php_generic;
