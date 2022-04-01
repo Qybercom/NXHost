@@ -1,7 +1,7 @@
 # https://habrahabr.ru/post/252821/
 
-listen 443;
-listen [::]:443;
+listen 443 ssl;
+listen [::]:443 ssl;
 
 ssl on;
 
