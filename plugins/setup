@@ -3,7 +3,6 @@
 
 set $fascgi_handler 127.0.0.1:9000;
 
-set $cors_enabled FALSE;
 set $cors_methods '';
 set $cors_headers '';
 

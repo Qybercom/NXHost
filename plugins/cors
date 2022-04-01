@@ -1,6 +1,10 @@
 # https://enable-cors.org/server_nginx.html
 # https://ezecodes.wordpress.com/2016/06/30/multiple-if-conditions-in-nginx/
 
+if ($cors_enabled ~ "^$") {
+	set $cors_enabled '';
+}
+
 if ($cors_origin ~ "^$") {
 	set $cors_origin $scheme://$host;
 }
@@ -36,7 +40,7 @@ if ($cors_method_options = 'TRUETRUE') {
 
 set $cors_method_get $cors_enabled;
 if ($request_method = 'GET') {
-	set $cors_method_post "${cors_enabled}TRUE";
+	set $cors_method_get "${cors_enabled}TRUE";
 }
 if ($cors_method_get = 'TRUETRUE') {
 	include nxhost/plugins/cors_headers_final;
