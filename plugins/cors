@@ -10,6 +10,9 @@ if ($cors_origin ~ "^$") {
 }
 
 set $cors_methods_default 'GET, POST, OPTIONS';
+if ($cors_methods ~ "^$") {
+	set $cors_methods '';
+}
 if ($cors_methods_final ~ "^$") {
 	set $cors_methods_final '$cors_methods_default,$cors_methods';
 }
@@ -17,7 +20,10 @@ if ($cors_methods ~ "^$") {
 	set $cors_methods_final $cors_methods_default;
 }
 
-set $cors_headers_default 'DNT,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Range';
+set $cors_headers_default 'DNT,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Range,Referer';
+if ($cors_headers ~ "^$") {
+	set $cors_headers '';
+}
 if ($cors_headers_final ~ "^$") {
 	set $cors_headers_final '$cors_headers_default,$cors_headers';
 }
