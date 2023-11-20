@@ -20,7 +20,7 @@ if ($cors_methods ~ "^$") {
 	set $cors_methods_final $cors_methods_default;
 }
 
-set $cors_headers_default 'DNT,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Range,Referer';
+set $cors_headers_default 'DNT,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Cookie,Range,Referer';
 if ($cors_headers ~ "^$") {
 	set $cors_headers '';
 }
