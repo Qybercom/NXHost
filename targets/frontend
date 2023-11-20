@@ -1,0 +1,14 @@
+location ~ ^(.*)\.(git|gitignore|idea|pem)[a-zA-Z0-9_\-]*$ { deny all; }
+
+location (Dockerfile|package.json|package.lock.json) { deny all; }
+
+location / {
+	rewrite (.*) /index.html last;
+}
+
+location /index.html { allow all; }
+
+include nxhost/plugins/setup;
+include nxhost/plugins/acme;
+include nxhost/plugins/deny_static;
+include nxhost/plugins/static;
