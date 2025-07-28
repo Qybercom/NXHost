@@ -1,1 +1,5 @@
-location ~ ^(.*)\.(htaccess|git|DS_store|pem)[a-zA-Z0-9_\-]*$ { deny all; }
+location ~ ^(.*)\.(git|DS_store|idea|gitignore|log|htaccess|ini|pem)[a-zA-Z0-9_/.\-]*$ { deny all; }
+
+location ~ Dockerfile { deny all; }
+
+location ~ docker-compose[a-zA-Z0-9_/.\-]*.yml { deny all; }

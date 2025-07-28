@@ -1,0 +1,6 @@
+include nxhost/plugins/deny_static;
+
+# https://stackoverflow.com/a/2404330/2097055
+location ~ ^((?!.*index).*\.(php|qd|devops)) { deny all; }
+
+location /runtime { deny all; }
